@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Spectro Results</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <h1>Spectrophotometer Results</h1>
+    <p id="loading">Loading...</p>
+
+    <div id="content" style="display:none;">
+      <h2 id="sample"></h2>
+      <p><strong>Name:</strong> <span id="name"></span></p>
+      <p><strong>Patient ID:</strong> <span id="pid"></span></p>
+      <p><strong>Email:</strong> <span id="email"></span></p>
+
+      <h3>Last Measurement</h3>
+      <p><strong>Reference Voltage:</strong> <span id="refV"></span> V</p>
+      <p><strong>Sample Voltage:</strong> <span id="samV"></span> V</p>
+      <p><strong>Transmittance:</strong> <span id="trans"></span> %</p>
+      <p><strong>Absorbance:</strong> <span id="abs"></span></p>
+
+      <p><strong>Report PDF:</strong> <a id="pdf" href="#" target="_blank">Download</a></p>
+      <p><strong>Last Updated:</strong> <span id="updated"></span></p>
+    </div>
+
+  </div>
+
+<script>
+(async () => {
+  const path = window.location.pathname.replace("/", "");
+  const sample = path.toUpperCase() || "SAMPLE001";
+
+  const url = `https://raw.githubusercontent.com/YOUR_USERNAME/spectro-data/main/data/${sample}.json`;
+
+  const response = await fetch(url, { cache: "no-store" });
+  const data = await response.json();
+
+  document.getElementById("loading").style.display = "none";
+
+  document.getElementById("content").style.display = "block";
+  document.getElementById("sample").textContent = sample;
+  document.getElementById("name").textContent = data.name;
+  document.getElementById("pid").textContent = data.patientID;
+  document.getElementById("email").textContent = data.email;
+  document.getElementById("refV").textContent = data.refV;
+  document.getElementById("samV").textContent = data.samV;
+  document.getElementById("trans").textContent = data.trans;
+  document.getElementById("abs").textContent = data.abs;
+  document.getElementById("updated").textContent = data.last_updated;
+  document.getElementById("pdf").href = data.pdf_url;
+})();
+</script>
+
+</body>
+</html>
