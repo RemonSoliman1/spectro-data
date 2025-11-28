@@ -35,7 +35,7 @@
   const path = window.location.pathname.replace("/", "");
   const sample = path.toUpperCase() || "SAMPLE001";
 
-  const url = `https://raw.githubusercontent.com/YOUR_USERNAME/spectro-data/main/data/${sample}.json`;
+  const url = `https://raw.githubusercontent.com/RemonSoliman1/spectro-data/main/data/${sample}.json`;
 
   const response = await fetch(url, { cache: "no-store" });
   const data = await response.json();
