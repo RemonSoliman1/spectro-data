@@ -3,10 +3,10 @@
   "patientID": "",
   "name": "",
   "email": "",
-  "refV": null,
-  "samV": null,
-  "trans": null,
-  "abs": null,
+  "refV": -4.7502,
+  "samV": -0.0029,
+  "trans": 0.0,
+  "abs": 0.0,
   "pdf_url": "",
-  "last_updated": ""
+  "last_updated": "2025-12-13T04:59:52.822915Z"
 }
